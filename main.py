@@ -4,7 +4,7 @@ import os
 import cv2
 import re
 
-a_img = cv2.imread('voe_images/02.jpg')
+a_img = cv2.imread('hoge.jpg')
 a_gray = cv2.cvtColor(a_img, cv2.COLOR_BGR2GRAY)
 
 # AKAZEを使用して特徴量を抽出
@@ -16,7 +16,7 @@ bf = cv2.BFMatcher()
 
 
 def check_voe_images():
-    min_num = 100
+    min_num = 0
     nearest_image = ''
     dir_path = 'voe_images'
     for image_path in os.listdir(dir_path):
@@ -31,7 +31,7 @@ def check_voe_images():
             min_distance = matches[0].distance
             # 上位10個の合計距離とかで判断してもいいかも
             # matches[:10]
-            if min_distance < min_num:
+            if min_num == 0 or min_distance < min_num:
                 min_num = min_distance
                 nearest_image = image_path
     return min_num, nearest_image
