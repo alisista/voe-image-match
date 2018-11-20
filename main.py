@@ -24,7 +24,7 @@ def check_voe_images():
             b_img = cv2.imread('./%s/%s' % (dir_path, image_path))
             b_gray = cv2.cvtColor(b_img, cv2.COLOR_BGR2GRAY)
             kp2, des2 = akaze.detectAndCompute(b_gray, None)
-            # 特徴量ベクトル同士をBrute-Force＆KNNでマッチング
+            # 特徴量ベクトル同士をBrute-Force
             matches = bf.match(des1, des2)
             # 特徴点同士の距離でソート
             matches = sorted(matches, key=lambda x: x.distance)
